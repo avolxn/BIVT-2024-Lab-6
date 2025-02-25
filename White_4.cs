@@ -12,7 +12,8 @@ namespace Lab_6 {
             public double[] Scores {
                 get {
                     if (_scores == null) {
-                        return default(double[]);
+                        // return default(double[]);
+                        return new double[0];
                     }
 
                     var newArray = new double[_scores.Length];
@@ -20,7 +21,7 @@ namespace Lab_6 {
                     return newArray;
                 }
             }
-            public double TotalScore => _scores.Sum();
+            public double TotalScore => (_scores != null) ? _scores.Sum() : 0;
             
 
             // Конструктор
@@ -37,7 +38,12 @@ namespace Lab_6 {
                 if (!(Math.Abs(result - 0) < eps || Math.Abs(result - 0.5) < eps || Math.Abs(result - 1) < eps)) {
                     Console.WriteLine("Result can be one of: 0, 0.5, 1");
                     return;
-                    
+                }
+
+                if (_scores == null) {
+                    Console.WriteLine("Array of scores wasn't initialized");
+                    return;
+                    // _scores = new double[0];
                 }
 
                 var newArray = new double[_scores.Length + 1];

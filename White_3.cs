@@ -11,7 +11,7 @@ namespace Lab_6 {
             public string Name => _name;
             public string Surname => _surname;
             public int Skipped => _skips;
-            public double AvgMark => _marks != null ? (double)_marks.Sum()/_marks.Length : 0;
+            public double AvgMark => (_marks != null && _marks.Length > 0) ? (double)_marks.Sum()/_marks.Length : 0;
 
             // Конструктор
             public Student(string name, string surname) {
@@ -26,11 +26,15 @@ namespace Lab_6 {
                 if (mark < 0) {
                     Console.WriteLine("Mark can't be negative");
                     return;
-                }
-
-                if (mark == 0) {
+                } else if (mark == 0) {
                     _skips += 1;
                 } else {
+                    if (_marks == null) {
+                        Console.WriteLine("Array of marks wasn't initialized");
+                        return;
+                        // _marks = new int[0];
+                    }
+
                     var newArray = new int[_marks.Length + 1];
                     Array.Copy(_marks, newArray, _marks.Length);
                     newArray[_marks.Length] = mark;

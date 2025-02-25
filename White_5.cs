@@ -59,8 +59,8 @@ namespace Lab_6 {
                     return newArray;
                 }
             }
-            public int TotalDifference => _matches.Sum(p => p.Difference);
-            public int TotalScore => _matches.Sum(p => p.Score);
+            public int TotalDifference => _matches != null ? _matches.Sum(p => p.Difference) : 0;
+            public int TotalScore => _matches != null ? _matches.Sum(p => p.Score) : 0;
             
             // Конструктор
             public Team (string name) {
@@ -70,6 +70,12 @@ namespace Lab_6 {
 
             // Методы
             public void PlayMatch(int goals, int misses) {
+                if (_matches == null) {
+                        Console.WriteLine("Array of matches wasn't initialized");
+                        return;
+                        // _matches = new Match[0];
+                    }
+
                 var newArray = new Match[_matches.Length + 1];
                 Array.Copy(_matches, newArray, _matches.Length);
                 Match match = new Match(goals, misses);
