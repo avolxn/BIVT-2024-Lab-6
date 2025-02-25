@@ -23,10 +23,12 @@ namespace Lab_6 {
             // Конструктор
             public Match(int goals, int misses) {
                 if (goals < 0) {
-                    throw new ArgumentException("Goal count can't be negative", nameof(goals));
+                    Console.WriteLine("Goal count can't be negative");
+                    return;
                 }
                 if (misses < 0) {
-                    throw new ArgumentException("Miss count can't be negative", nameof(misses));
+                    Console.WriteLine("Miss count can't be negative");
+                    return;
                 }
 
                 _goals = goals;
@@ -45,7 +47,7 @@ namespace Lab_6 {
             private Match[] _matches;
 
             // Свойства
-            public string Name => _name != null ? _name : "Unknown";
+            public string Name => _name;
             public Match[] Matches {
                 get {
                     if (_matches == null) {
@@ -62,7 +64,7 @@ namespace Lab_6 {
             
             // Конструктор
             public Team (string name) {
-                _name = name != null ? name : "Unknown";
+                _name = name;
                 _matches = new Match[0];
             }
 
@@ -77,14 +79,16 @@ namespace Lab_6 {
 
             public static void SortTeams(Team[] teams) {
                 if (teams == null) {
-                    throw new ArgumentNullException("Array of teams can't be null", nameof(teams));
+                    Console.WriteLine("Array of teams can't be null");
+                    return;
                 }
                 if (teams.Length == 0) {
-                    throw new ArgumentException("Array of teams must not be empty", nameof(teams));
+                    Console.WriteLine("Array of teams must not be empty");
+                    return;
                 }
 
-                var newArray = teams.OrderByDescending(p => p.TotalScore).ToList();
-                newArray.CopyTo(teams);
+                var newArray = teams.OrderByDescending(p => p.TotalScore).ToArray();
+                Array.Copy(newArray, teams, newArray.Length);
             }
 
             public void Print() {

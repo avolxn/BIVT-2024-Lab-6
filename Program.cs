@@ -24,7 +24,7 @@ namespace Lab_6
                 new White_1.Participant("Сидорова", "Метеор"),
                 new White_1.Participant("Степанова", "Магнит"),
                 new White_1.Participant("Сидорова", "Метеор"),
-                new White_1.Participant("Степанова", "Рубин")
+                new White_1.Participant("Степанова", "Рубин"),
             };
 
             participants1[0].Jump(7.39);
@@ -126,9 +126,6 @@ namespace Lab_6
                 new White_3.Student("Игорь", "Иванов")
             };
 
-            ///
-            /// Ошибка в Output в файле у Игорь Полевой
-            ///
             students[0].Lesson(3); students[0].Lesson(4); students[0].Lesson(4); students[0].Lesson(3); students[0].Lesson(3); students[0].Lesson(5); students[0].Lesson(5); students[0].Lesson(4); students[0].Lesson(4); students[0].Lesson(0);
             students[1].Lesson(4); students[1].Lesson(4); students[1].Lesson(3); students[1].Lesson(0); students[1].Lesson(2); students[1].Lesson(2); students[1].Lesson(5); students[1].Lesson(5); students[1].Lesson(2); students[1].Lesson(2);
             students[2].Lesson(2); students[2].Lesson(2); students[2].Lesson(2); students[2].Lesson(5); students[2].Lesson(2); students[2].Lesson(4); students[2].Lesson(5); students[2].Lesson(4); students[2].Lesson(0); students[2].Lesson(0);
@@ -175,11 +172,8 @@ namespace Lab_6
                 new White_4.Participant("Александр", "Полевой")
             };
 
-            ///
-            /// Ошибка в Output у Мирослав Тихонов
-            /// 
-            participants4[0].PlayMatch(0.5); participants4[0].PlayMatch(1.0); participants4[0].PlayMatch(0.5); participants4[0].PlayMatch(0.0);
-            participants4[0].PlayMatch(0.5); participants4[0].PlayMatch(0.5); participants4[0].PlayMatch(0.5); participants4[0].PlayMatch(0.5);
+            participants4[0].PlayMatch(0.5); participants4[0].PlayMatch(1.0); participants4[0].PlayMatch(0.5); participants4[0].PlayMatch(1.0);
+            participants4[0].PlayMatch(0); participants4[0].PlayMatch(0.5); participants4[0].PlayMatch(0.5); participants4[0].PlayMatch(0.5);
             participants4[0].PlayMatch(0.5); participants4[0].PlayMatch(0.5);
 
             participants4[1].PlayMatch(0.0); participants4[1].PlayMatch(1.0); participants4[1].PlayMatch(0.0); participants4[1].PlayMatch(1.0);

@@ -9,16 +9,16 @@ namespace Lab_6 {
             private double _secondJump;
 
             // Свойства
-            public string Name => _name != null ? _name : "Unknown";
-            public string Surname => _surname != null ? _surname : "Unknown";
+            public string Name => _name;
+            public string Surname => _surname;
             public double FirstJump => _firstJump;
             public double SecondJump => _secondJump;
             public double BestJump => _firstJump >= _secondJump ? _firstJump : _secondJump;
 
             // Конструктор
             public Participant(string name, string surname) {
-                _name = name != null ? name : "Unknown";
-                _surname = surname != null ? surname : "Unknown";
+                _name = name;
+                _surname = surname;
                 _firstJump = 0;
                 _secondJump = 0;
             }
@@ -26,19 +26,22 @@ namespace Lab_6 {
             // Методы
             public static void Sort(Participant[] array) {
                 if (array == null) {
-                    throw new ArgumentNullException("Array can't be null", nameof(array));
+                    Console.WriteLine("Array can't be null");
+                    return;
                 }
                 if (array.Length == 0) {
-                    throw new ArgumentException("Array must not be empty", nameof(array));
+                    Console.WriteLine("Array must not be empty");
+                    return;
                 }
 
-                var newArray = array.OrderByDescending(p => p.BestJump).ToList();
-                newArray.CopyTo(array);
+                var newArray = array.OrderByDescending(p => p.BestJump).ToArray();
+                Array.Copy(newArray, array, newArray.Length);
             }
 
             public void Jump(double result) {
                 if (result < 0) {
-                    throw new ArgumentException("Result can't be negative", nameof(result));
+                    Console.WriteLine("Result can't be negative");
+                    return;
                 }
 
                 if (_firstJump == 0) {

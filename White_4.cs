@@ -7,12 +7,12 @@ namespace Lab_6 {
             private double[] _scores;
 
             // Свойства
-            public string Name => _name != null ? _name : "Unknown";
-            public string Surname => _surname != null ? _surname : "Unknown";
+            public string Name => _name;
+            public string Surname => _surname;
             public double[] Scores {
                 get {
                     if (_scores == null) {
-                        return new double[0];
+                        return default(double[]);
                     }
 
                     var newArray = new double[_scores.Length];
@@ -25,8 +25,8 @@ namespace Lab_6 {
 
             // Конструктор
             public Participant(string name, string surname) {
-                _name = name != null ? name : "Unknown";
-                _surname = surname != null ? surname : "Unknown";
+                _name = name;
+                _surname = surname;
                 _scores = new double[0];
             }
 
@@ -35,7 +35,9 @@ namespace Lab_6 {
                 const double eps = 0.0001;
 
                 if (!(Math.Abs(result - 0) < eps || Math.Abs(result - 0.5) < eps || Math.Abs(result - 1) < eps)) {
-                    throw new ArgumentException("Result can be one of: 0, 0.5, 1", nameof(result));
+                    Console.WriteLine("Result can be one of: 0, 0.5, 1");
+                    return;
+                    
                 }
 
                 var newArray = new double[_scores.Length + 1];
@@ -46,14 +48,16 @@ namespace Lab_6 {
 
             public static void Sort(Participant[] array) {
                 if (array == null) {
-                    throw new ArgumentNullException("Array can't be null", nameof(array));
+                    Console.WriteLine("Array can't be null");
+                    return;
                 }
                 if (array.Length == 0) {
-                    throw new ArgumentException("Array must not be empty", nameof(array));
+                    Console.WriteLine("Array must not be empty");
+                    return;
                 }
 
-                var newArray = array.OrderByDescending(p => p.TotalScore).ToList();
-                newArray.CopyTo(array);
+                var newArray = array.OrderByDescending(p => p.TotalScore).ToArray();
+                Array.Copy(newArray, array, newArray.Length);
             }
 
             public void Print() {

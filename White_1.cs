@@ -9,16 +9,16 @@ namespace Lab_6 {
             private double _secondJump;
             
             // Свойства
-            public string Surname => _surname != null ? _surname : "Unknown";
-            public string Club => _club != null ? _club : "Unknown";
+            public string Surname => _surname;
+            public string Club => _club;
             public double FirstJump => _firstJump;
             public double SecondJump => _secondJump;
-            public double JumpSum => Math.Round(_firstJump + _secondJump, 2);
+            public double JumpSum => _firstJump + _secondJump;
 
             // Конструктор
             public Participant(string surname, string club) {
-                _surname = surname != null ? surname : "Unknown";
-                _club = club != null ? club : "Unknown";
+                _surname = surname;
+                _club = club;
                 _firstJump = 0;
                 _secondJump = 0;
             }
@@ -26,19 +26,22 @@ namespace Lab_6 {
             // Методы
             public static void Sort(Participant[] array) {
                 if (array == null) {
-                    throw new ArgumentNullException("Array can't be null", nameof(array));
+                    Console.WriteLine("Array can't be null");
+                    return;
                 }
                 if (array.Length == 0) {
-                    throw new ArgumentException("Array must not be empty", nameof(array));
+                    Console.WriteLine("Array must not be empty");
+                    return;
                 }
 
-                var newArray = array.OrderByDescending(p => p.JumpSum).ToList();
-                newArray.CopyTo(array);
+                var newArray = array.OrderByDescending(p => p.JumpSum).ToArray();
+                Array.Copy(newArray, array, newArray.Length);
             }
 
             public void Jump(double result) {
                 if (result < 0) {
-                    throw new ArgumentException("Result can't be negative", nameof(result));
+                    Console.WriteLine("Result can't be negative");
+                    return;
                 }
 
                 if (_firstJump == 0) {

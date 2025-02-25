@@ -8,15 +8,15 @@ namespace Lab_6 {
             private int _skips;
 
             // Свойства
-            public string Name => _name != null ? _name : "Unknown";
-            public string Surname => _surname != null ? _surname : "Unknown";
+            public string Name => _name;
+            public string Surname => _surname;
             public int Skipped => _skips;
-            public double AvgMark => _marks != null ? Math.Round((double)_marks.Sum()/_marks.Length, 2) : 0;
+            public double AvgMark => _marks != null ? (double)_marks.Sum()/_marks.Length : 0;
 
             // Конструктор
             public Student(string name, string surname) {
-                _name = name != null ? name : "Unknown";
-                _surname = surname != null ? surname : "Unknown";
+                _name = name;
+                _surname = surname;
                 _marks = new int[0];
                 _skips = 0;
             }
@@ -24,7 +24,8 @@ namespace Lab_6 {
             // Методы
             public void Lesson(int mark) {
                 if (mark < 0) {
-                    throw new ArgumentException("Mark can't be negative", nameof(mark));
+                    Console.WriteLine("Mark can't be negative");
+                    return;
                 }
 
                 if (mark == 0) {
@@ -37,16 +38,18 @@ namespace Lab_6 {
                 }
             }
 
-            public static void SortBySkipped(Student [] array) {
+            public static void SortBySkipped(Student[] array) {
                 if (array == null) {
-                    throw new ArgumentNullException("Array can't be null", nameof(array));
+                    Console.WriteLine("Array can't be null");
+                    return;
                 }
                 if (array.Length == 0) {
-                    throw new ArgumentException("Array must not be empty", nameof(array));
+                    Console.WriteLine("Array must not be empty");
+                    return;
                 }
 
-                var newArray = array.OrderByDescending(p => p.Skipped).ToList();
-                newArray.CopyTo(array);
+                var newArray = array.OrderByDescending(p => p.Skipped).ToArray();
+                Array.Copy(newArray, array, newArray.Length);
             }
 
             public void Print() {
