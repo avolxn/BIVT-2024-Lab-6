@@ -271,6 +271,12 @@ namespace Lab_6
             teams[9].PlayMatch(1, 0); teams[9].PlayMatch(4, 1); teams[9].PlayMatch(1, 0); teams[9].PlayMatch(4, 4);
             teams[9].PlayMatch(1, 3); teams[9].PlayMatch(1, 2);
 
+            foreach (var team in teams) {
+                team.Print();
+            }
+
+            Console.WriteLine("\n\n\n");
+
             White_5.Team.SortTeams(teams);
 
             foreach (var team in teams) {

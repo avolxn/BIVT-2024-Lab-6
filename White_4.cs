@@ -12,8 +12,7 @@ namespace Lab_6 {
             public double[] Scores {
                 get {
                     if (_scores == null) {
-                        // return default(double[]);
-                        return new double[0];
+                        return default(double[]);
                     }
 
                     var newArray = new double[_scores.Length];

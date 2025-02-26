@@ -48,17 +48,7 @@ namespace Lab_6 {
 
             // Свойства
             public string Name => _name;
-            public Match[] Matches {
-                get {
-                    if (_matches == null) {
-                        return new Match[0];
-                    }
-
-                    var newArray = new Match[_matches.Length];
-                    Array.Copy(_matches, newArray, _matches.Length);
-                    return newArray;
-                }
-            }
+            public Match[] Matches => _matches != null ? _matches : default(Match[]);
             public int TotalDifference => _matches != null ? _matches.Sum(p => p.Difference) : 0;
             public int TotalScore => _matches != null ? _matches.Sum(p => p.Score) : 0;
             
