@@ -83,8 +83,16 @@ namespace Lab_6 {
                     return;
                 }
 
-                var newArray = teams.OrderByDescending(p => p.TotalScore).ToArray();
-                Array.Copy(newArray, teams, newArray.Length);
+                int l = teams.Length;
+                for (int i = 0; i < l - 1; i++) {
+                    for (int j = 0; j < l - i - 1; j++) {
+                        if (teams[j].TotalScore < teams[j + 1].TotalScore) {
+                            Team tmp = teams[j];
+                            teams[j] = teams[j + 1];
+                            teams[j + 1] = tmp;
+                        }
+                    }
+                }
             }
 
             public void Print() {
