@@ -86,7 +86,8 @@ namespace Lab_6 {
                 int l = teams.Length;
                 for (int i = 0; i < l - 1; i++) {
                     for (int j = 0; j < l - i - 1; j++) {
-                        if (teams[j].TotalScore < teams[j + 1].TotalScore) {
+                        if ((teams[j].TotalScore < teams[j + 1].TotalScore) ||
+                         (teams[j].TotalScore == teams[j + 1].TotalScore && teams[j].TotalDifference < teams[j + 1].TotalDifference)) {
                             Team tmp = teams[j];
                             teams[j] = teams[j + 1];
                             teams[j + 1] = tmp;
